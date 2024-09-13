@@ -11,12 +11,12 @@ def Block(n_filters, inputs, k_size=3, max_pooling=True, layer=0, decoding=False
     name = name + '_' + str(layer) + '_'
 
   conv = inputs
-  conv = Conv2D(n_filters, kernel_size=k_size, strides=1, padding='same', activation='relu', name=name+'Conv_1')(conv)
-  conv = ReLU(name=name+'ReLU_1')(conv)
+  conv = Conv2D(n_filters, kernel_size=k_size, strides=1, padding='same', name=name+'Conv_1')(conv)
   conv = BatchNormalization(epsilon=1e-05, momentum=0.1, name=name+'BN_1')(conv)#, center=False, scale=False)(conv)
-  #conv = Conv2D(n_filters, kernel_size=k_size, strides=1, padding='same', activation='relu', name=name+'Conv_2')(conv)
-  #conv = ReLU()(conv)
+  conv = ReLU(name=name+'ReLU_1')(conv)
+  #conv = Conv2D(n_filters, kernel_size=k_size, strides=1, padding='same', name=name+'Conv_2')(conv)
   #conv = BatchNormalization(epsilon=1e-05, momentum=0.1)(conv)
+  #conv = ReLU()(conv)
 
   pool = None
   if max_pooling:
